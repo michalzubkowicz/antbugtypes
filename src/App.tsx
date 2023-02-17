@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Button, Checkbox, Form, Input} from 'antd';
+
+export type FormDataModel = {
+  username: string;
+  password: string;
+}
 
 function App() {
+  const [form] = Form.useForm<FormDataModel>();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Form
+      form={form}
+    >
+      <Form.Item
+        label="Username"
+        name="INVALID_FORM_NAME"
+        rules={[{required: true, message: 'Please input your username!'}]}
+      >
+        <Input/>
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="INVALID_FORM_NAME2"
+        rules={[{required: true, message: 'Please input your password!'}]}
+      >
+        <Input.Password/>
+      </Form.Item>
+
+      <Form.Item wrapperCol={{offset: 8, span: 16}}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }
 
